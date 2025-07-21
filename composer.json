@@ -1,0 +1,42 @@
+{
+    "name": "buenedata/bd-cleandash",
+    "description": "Clean up your WordPress dashboard by hiding unwanted notices and widgets",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Buene Data",
+            "homepage": "https://buenedata.no",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "dashboard",
+        "admin",
+        "cleanup",
+        "notices",
+        "widgets"
+    ],
+    "homepage": "https://github.com/buenedata/bd-cleandash",
+    "support": {
+        "issues": "https://github.com/buenedata/bd-cleandash/issues",
+        "source": "https://github.com/buenedata/bd-cleandash"
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "BueneData\\CleanDash\\": "includes/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "extra": {
+        "wordpress-install-dir": "wp-content/plugins/bd-cleandash"
+    }
+}
