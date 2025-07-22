@@ -1,0 +1,358 @@
+# Copyright (C) 2025 Buene Data
+# This file is distributed under the same license as the BD CleanDash plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: BD CleanDash 1.0.0\n"
+"Report-Msgid-Bugs-To: https://buenedata.no/support/\n"
+"POT-Creation-Date: 2025-07-21 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: bd-cleandash.php
+msgid "BD CleanDash requires WordPress 5.0 or higher."
+msgstr ""
+
+#: bd-cleandash.php
+msgid "BD CleanDash requires PHP 7.4 or higher."
+msgstr ""
+
+#: includes/class-bd-admin.php
+msgid "Buene Data"
+msgstr ""
+
+#: includes/class-bd-admin.php
+msgid "BD CleanDash"
+msgstr ""
+
+#: includes/class-bd-admin.php
+msgid "🧹 CleanDash"
+msgstr ""
+
+#: includes/class-bd-admin.php
+msgid "Security check failed."
+msgstr ""
+
+#: includes/class-bd-admin.php
+msgid "You do not have sufficient permissions."
+msgstr ""
+
+#: includes/class-bd-ajax.php
+msgid "Element hidden successfully"
+msgstr ""
+
+#: includes/class-bd-ajax.php
+msgid "Element shown successfully"
+msgstr ""
+
+#: includes/class-bd-ajax.php
+msgid "%d elements hidden successfully"
+msgstr ""
+
+#: includes/class-bd-ajax.php
+msgid "All blacklists cleared successfully"
+msgstr ""
+
+#: includes/class-bd-ajax.php
+msgid "User blacklist cleared successfully"
+msgstr ""
+
+#: includes/class-bd-ajax.php
+msgid "%d items imported successfully"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Profesjonelle WordPress-løsninger"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "CleanDash"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Rydde opp i WordPress dashbordet ved å skjule uønskede varsler og widgets."
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Aktiv"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Konfigurer"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Inaktiv"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Aktiver"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Ikke installert"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Installer"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Kommer snart"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Security"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Forbedre sikkerheten på WordPress-nettstedet ditt."
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Analytics"
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Detaljert analyse og rapportering for nettstedet ditt."
+msgstr ""
+
+#: templates/bd-overview.php
+msgid "Trenger hjelp? Besøk <a href=\"%s\" target=\"_blank\">dokumentasjonen</a> eller <a href=\"%s\" target=\"_blank\">kontakt oss</a>."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Hold dashbordet ditt rent og ryddig"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Aktivert"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Deaktivert"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Innstillinger lagret!"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Dashboard"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Svarteliste"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Brukere"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Verktøy"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Hovedinnstillinger"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Konfigurer grunnleggende oppførsel for dashboard-opprydding"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Aktiver dashboard-opprydding"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Hovedbryter for å aktivere eller deaktivere alle oppryddingsfunksjoner."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Vis skjul-knapper"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Vis \"Skjul\"-knapper på varsler og widgets for enkel skjuling."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Vedvarende modus"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Husk skjulte elementer på tvers av økter."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Auto-skjul nye elementer"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Skjul automatisk nye elementer som matcher svarteliste-regler."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Tillat bruker-overstyring"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "La brukere overstyre globale innstillinger med egne preferanser."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Språk / Language"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Fremtredende"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Lagre innstillinger"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Statistikk"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Oversikt over skjulte elementer"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Totalt skjulte"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Varsler"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Widgets"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Globale"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Svarteliste-administrasjon"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Administrer skjulte elementer og regler"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Laster svarteliste..."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Bruker- og rolleinnstillinger"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Konfigurer innstillinger per bruker og rolle"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Laster brukerinnstillinger..."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Import/Export"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Sikkerhetskopier og gjenopprett svarteliste-konfigurasjoner"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Eksporter svarteliste"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Last ned en JSON-fil med all svarteliste-data."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Importer svarteliste"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Importer"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Last opp en JSON-fil for å importere svarteliste-data."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Tilbakestill"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Tilbakestill plugin-data og innstillinger"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Tøm min svarteliste"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Fjern alle dine personlige skjulte elementer."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Tøm alle svartelister"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Fjern alle svartelister for alle brukere. Kan ikke angres."
+msgstr ""
+
+#: assets/js/dashboard.js
+msgid "Hide"
+msgstr ""
+
+#: assets/js/dashboard.js
+msgid "Show"
+msgstr ""
+
+#: assets/js/dashboard.js
+msgid "Hidden"
+msgstr ""
+
+#: assets/js/dashboard.js
+msgid "Hide this element"
+msgstr ""
+
+#: assets/js/dashboard.js
+msgid "Show this element"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Skjul admin-bar i backend"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Skjul admin-toolbar øverst på admin-sider for en renere opplevelse."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Skjul admin-bar på frontend"
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Skjul admin-toolbar på frontend (offentlige sider) når du er innlogget."
+msgstr ""
+
+#: templates/admin-page.php
+msgid "Gjelder for roller:"
+msgstr ""

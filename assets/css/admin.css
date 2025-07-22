@@ -1,0 +1,1299 @@
+/*
+ * BD CleanDash Admin Styles
+ * Following BD Design Guide v3.0
+ */
+
+/* BD Design Variables */
+:root {
+    --bd-primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bd-hover-gradient: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    --bd-checked-gradient: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    --bd-section-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    --bd-success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --bd-danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    
+    --bd-primary: #667eea;
+    --bd-hover: #0ea5e9;
+    --bd-checked: #0369a1;
+    --bd-secondary: #764ba2;
+    
+    --bd-container-bg: #f8fafc;
+    --bd-card-bg: #ffffff;
+    --bd-header-bg: #f1f5f9;
+    --bd-section-bg-flat: #f8fafc;
+    
+    --bd-text-dark: #374151;
+    --bd-text-medium: #4a5568;
+    --bd-text-light: #64748b;
+    --bd-border: #e2e8f0;
+    --bd-border-focus: #0ea5e9;
+    
+    --bd-shadow-light: 0 1px 2px rgba(0,0,0,0.05);
+    --bd-shadow-medium: 0 4px 12px rgba(14, 165, 233, 0.15);
+    --bd-shadow-strong: 0 4px 12px rgba(14, 165, 233, 0.2);
+    
+    --bd-border-radius: 12px;
+    --bd-border-radius-small: 8px;
+    --bd-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modern Typography */
+.bd-cleandash-admin {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--bd-text-dark);
+    line-height: 1.5;
+}
+
+.gradient-text {
+    background: var(--bd-primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 2.4em;
+    line-height: 1.4;
+}
+
+/* BD Overview Styles */
+.wrap.bd-overview,
+.bd-cleandash-admin.bd-overview {
+    max-width: 1200px;
+    margin: 20px auto !important;
+    padding: 20px;
+    background: var(--bd-container-bg);
+    min-height: calc(100vh - 200px);
+}
+
+.bd-overview .bd-header,
+.bd-cleandash-admin .bd-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin-bottom: 40px !important;
+    padding: 30px !important;
+    background: var(--bd-card-bg) !important;
+    border-radius: var(--bd-border-radius);
+    box-shadow: var(--bd-shadow-medium);
+}
+
+.bd-logo {
+    flex-shrink: 0;
+}
+
+.bd-icon {
+    font-size: 3em;
+    display: inline-block;
+    line-height: 1;
+}
+
+.bd-header-text h1 {
+    margin: 0 0 5px 0;
+    font-size: 2.4em;
+    font-weight: 700;
+}
+
+.bd-header-text p {
+    margin: 0;
+    color: var(--bd-text-medium);
+    font-size: 1.1em;
+}
+
+.bd-header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Language Selector in Header */
+#bd-language-selector {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: var(--bd-primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--bd-border-radius-small);
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--bd-transition);
+    box-shadow: var(--bd-shadow-light);
+    min-width: 120px;
+    text-align: center;
+}
+
+#bd-language-selector:hover {
+    background: var(--bd-hover-gradient);
+    box-shadow: var(--bd-shadow-medium);
+    transform: translateY(-1px);
+}
+
+#bd-language-selector:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+#bd-language-selector option {
+    background: white;
+    color: var(--bd-text-dark);
+    padding: 8px;
+}
+
+/* Plugin Cards Grid */
+.bd-overview .bd-plugins-grid,
+.bd-cleandash-admin .bd-plugins-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    gap: 24px !important;
+    margin-bottom: 40px !important;
+    width: 100% !important;
+    
+    /* Fallback for older browsers */
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+    -ms-flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
+}
+
+/* Modern browsers */
+@supports (display: grid) {
+    .bd-overview .bd-plugins-grid,
+    .bd-cleandash-admin .bd-plugins-grid {
+        display: grid !important;
+        -webkit-box-orient: unset !important;
+        -webkit-box-direction: unset !important;
+        -ms-flex-direction: unset !important;
+        flex-direction: unset !important;
+        -ms-flex-wrap: unset !important;
+        flex-wrap: unset !important;
+    }
+}
+
+.bd-overview .bd-plugin-card,
+.bd-cleandash-admin .bd-plugin-card {
+    background: var(--bd-card-bg) !important;
+    border-radius: var(--bd-border-radius) !important;
+    padding: 24px !important;
+    box-shadow: var(--bd-shadow-light) !important;
+    transition: var(--bd-transition) !important;
+    border: 1px solid var(--bd-border) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: block !important;
+    width: auto !important;
+    float: none !important;
+    
+    /* Flexbox fallback */
+    -webkit-box-flex: 1 !important;
+    -ms-flex: 1 1 300px !important;
+    flex: 1 1 300px !important;
+    min-width: 300px !important;
+    max-width: calc(50% - 12px) !important;
+    margin: 0 0 24px 0 !important;
+}
+
+/* For 3 columns on larger screens */
+@media (min-width: 1000px) {
+    .bd-overview .bd-plugin-card,
+    .bd-cleandash-admin .bd-plugin-card {
+        max-width: calc(33.333% - 16px) !important;
+    }
+}
+
+/* Modern browsers with Grid support */
+@supports (display: grid) {
+    .bd-overview .bd-plugin-card,
+    .bd-cleandash-admin .bd-plugin-card {
+        -webkit-box-flex: unset !important;
+        -ms-flex: unset !important;
+        flex: unset !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        margin: 0 !important;
+    }
+}
+
+.bd-plugin-card:hover {
+    box-shadow: var(--bd-shadow-medium);
+    transform: translateY(-2px);
+}
+
+.bd-plugin-card.active {
+    border-color: var(--bd-primary);
+    box-shadow: var(--bd-shadow-strong);
+}
+
+.bd-plugin-card.placeholder {
+    opacity: 0.7;
+}
+
+.bd-plugin-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--bd-primary-gradient);
+    opacity: 0;
+    transition: var(--bd-transition);
+}
+
+.bd-plugin-card.active::before {
+    opacity: 1;
+}
+
+.bd-plugin-icon {
+    font-size: 2.5em;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.bd-plugin-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--bd-text-dark);
+}
+
+.bd-plugin-card p {
+    margin: 0 0 20px 0;
+    color: var(--bd-text-medium);
+    line-height: 1.6;
+}
+
+.bd-plugin-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.status-active {
+    color: #059669;
+    font-weight: 600;
+}
+
+.status-coming-soon {
+    color: var(--bd-text-light);
+    font-weight: 600;
+}
+
+.version {
+    color: var(--bd-text-light);
+    font-weight: 500;
+}
+
+/* Modern Buttons */
+.bd-button {
+    background: var(--bd-primary-gradient) !important;
+    border: none !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: var(--bd-border-radius-small) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: var(--bd-transition) !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: var(--bd-shadow-light) !important;
+}
+
+.bd-button:hover {
+    background: var(--bd-hover-gradient) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--bd-shadow-medium) !important;
+}
+
+.bd-button:active {
+    transform: translateY(0) !important;
+}
+
+.bd-button:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+.bd-button.active {
+    background: var(--bd-success-gradient) !important;
+}
+
+.bd-button-danger {
+    background: var(--bd-danger-gradient) !important;
+}
+
+.bd-button-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+}
+
+/* WordPress Button Primary Integration with BD Theme */
+.button.button-primary.bd-button {
+    background: var(--bd-primary-gradient) !important;
+    border: none !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: var(--bd-border-radius-small) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: var(--bd-transition) !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: var(--bd-shadow-light) !important;
+}
+
+.button.button-primary.bd-button:hover {
+    background: var(--bd-hover-gradient) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--bd-shadow-medium) !important;
+    color: white !important;
+}
+
+.button.button-primary.bd-button:active {
+    transform: translateY(0) !important;
+}
+
+.button.button-primary.bd-button:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Table-specific button adjustments */
+.bd-blacklist-table .bd-button,
+.bd-user-stats .bd-button {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    min-height: auto !important;
+    line-height: 1.2 !important;
+}
+
+/* Ensure proper button inheritance for WordPress button classes */
+.button.bd-button {
+    background: var(--bd-primary-gradient) !important;
+    border: none !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    border-radius: var(--bd-border-radius-small) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: var(--bd-transition) !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: var(--bd-shadow-light) !important;
+}
+
+.button.bd-button:hover {
+    background: var(--bd-hover-gradient) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--bd-shadow-medium) !important;
+    color: white !important;
+}
+
+.button.bd-button:active {
+    transform: translateY(0) !important;
+}
+
+.button.bd-button:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+}
+
+.button.bd-button.bd-button-danger {
+    background: var(--bd-danger-gradient) !important;
+}
+
+.button.bd-button.bd-button-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    color: white !important;
+}
+
+.button.bd-button.bd-button-danger:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* WordPress Button Integration with BD Theme */
+.button.button-secondary.bd-button {
+    background: var(--bd-primary-gradient) !important;
+    border: none !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    border-radius: var(--bd-border-radius-small) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: var(--bd-transition) !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: var(--bd-shadow-light) !important;
+    min-height: auto !important;
+    line-height: 1.2 !important;
+}
+
+.button.button-secondary.bd-button:hover {
+    background: var(--bd-hover-gradient) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--bd-shadow-medium) !important;
+    color: white !important;
+}
+
+.button.button-secondary.bd-button.bd-button-danger {
+    background: var(--bd-danger-gradient) !important;
+}
+
+.button.button-secondary.bd-button.bd-button-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    color: white !important;
+}
+
+.button.button-secondary.bd-button:active {
+    transform: translateY(0) !important;
+}
+
+.button.button-secondary.bd-button:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+}
+
+.button.button-secondary.bd-button.bd-button-danger:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Admin Page Layout */
+.bd-cleandash-admin {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.bd-admin-container {
+    background: var(--bd-card-bg);
+    border-radius: var(--bd-border-radius);
+    box-shadow: var(--bd-shadow-medium);
+    overflow: hidden;
+}
+
+/* Modern Tabs */
+.bd-tab-nav {
+    display: flex;
+    background: var(--bd-header-bg);
+    border-bottom: 1px solid var(--bd-border);
+}
+
+.bd-tab-button {
+    flex: 1;
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: var(--bd-transition);
+    font-weight: 600;
+    color: var(--bd-text-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+
+.bd-tab-button:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--bd-primary);
+}
+
+.bd-tab-button.active {
+    color: var(--bd-primary);
+    background: white;
+}
+
+.bd-tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--bd-primary-gradient);
+}
+
+.tab-icon {
+    font-size: 1.1em;
+}
+
+/* Tab Content */
+.bd-tab-content {
+    display: none;
+    padding: 30px;
+}
+
+.bd-tab-content.active {
+    display: block;
+}
+
+/* Grid Layout */
+.bd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+/* Modern Cards */
+.bd-card {
+    background: var(--bd-card-bg);
+    border-radius: var(--bd-border-radius);
+    border: 1px solid var(--bd-border);
+    overflow: hidden;
+    transition: var(--bd-transition);
+}
+
+.bd-card:hover {
+    box-shadow: var(--bd-shadow-light);
+}
+
+.bd-card-header {
+    padding: 24px 24px 16px 24px;
+    background: var(--bd-section-bg);
+    border-bottom: 1px solid var(--bd-border);
+}
+
+.bd-card-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--bd-text-dark);
+}
+
+.bd-card-header p {
+    margin: 0;
+    color: var(--bd-text-medium);
+    font-size: 0.95em;
+}
+
+.bd-card-body {
+    padding: 24px;
+    overflow: visible;
+    word-wrap: break-word;
+}
+
+/* Form Elements */
+.bd-form-group {
+    margin-bottom: 24px;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bd-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.bd-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--bd-text-dark);
+    width: 100%;
+}
+
+.bd-form-group label:not(.bd-toggle) {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--bd-text-dark);
+    width: 100%;
+}
+
+.bd-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--bd-border);
+    border-radius: var(--bd-border-radius-small);
+    background: white;
+    font-size: 14px;
+    transition: var(--bd-transition);
+}
+
+.bd-select:focus {
+    border-color: var(--bd-border-focus);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    outline: none;
+}
+
+/* Modern Toggle Switch */
+.bd-cleandash-admin .bd-toggle,
+.bd-admin-container .bd-toggle {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    width: 100% !important;
+    min-height: 24px !important;
+    margin-bottom: 0 !important;
+}
+
+.bd-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.bd-toggle-slider {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: #e2e8f0;
+    border-radius: 24px;
+    transition: var(--bd-transition);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.bd-toggle-slider::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: var(--bd-transition);
+    box-shadow: var(--bd-shadow-light);
+}
+
+.bd-toggle input[type="checkbox"]:checked + .bd-toggle-slider {
+    background: var(--bd-primary);
+}
+
+.bd-toggle input[type="checkbox"]:checked + .bd-toggle-slider::before {
+    transform: translateX(24px);
+}
+
+.bd-toggle-label {
+    font-weight: 600 !important;
+    color: var(--bd-text-dark) !important;
+    flex: 1 !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.4 !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    text-overflow: initial !important;
+}
+
+
+
+.description {
+    margin-top: 8px !important;
+    font-size: 0.9em !important;
+    color: var(--bd-text-light) !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Additional fixes for text display */
+.bd-card .bd-form-group .bd-toggle {
+    max-width: 100%;
+    overflow: visible;
+}
+
+.bd-card .bd-form-group .bd-toggle .bd-toggle-label {
+    max-width: calc(100% - 60px);
+    overflow: visible;
+    text-overflow: initial;
+}
+
+/* Ensure proper spacing in forms */
+.bd-form-group + .bd-form-group {
+    margin-top: 24px;
+}
+
+/* Force proper layout for form elements */
+form .bd-form-group {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form .bd-form-group label.bd-toggle {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+}
+
+/* Statistics */
+.bd-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.bd-stat {
+    text-align: center;
+    padding: 20px;
+    background: var(--bd-section-bg);
+    border-radius: var(--bd-border-radius-small);
+    border: 1px solid var(--bd-border);
+}
+
+.bd-stat-number {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--bd-primary);
+    margin-bottom: 4px;
+}
+
+.bd-stat-label {
+    font-size: 0.9em;
+    color: var(--bd-text-medium);
+    font-weight: 500;
+}
+
+/* User settings */
+.bd-user-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.bd-user-stat-card {
+    background: var(--bd-card-bg);
+    border: 1px solid var(--bd-border);
+    border-radius: var(--bd-border-radius-small);
+    padding: 16px;
+    transition: var(--bd-transition);
+}
+
+.bd-user-stat-card:hover {
+    box-shadow: var(--bd-shadow-light);
+}
+
+.bd-user-stat-card.current-user {
+    border-color: var(--bd-primary);
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.bd-user-stat-card h5 {
+    margin: 0 0 12px 0;
+    color: var(--bd-text-dark);
+    font-weight: 600;
+}
+
+.bd-user-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bd-user-stats .stat {
+    font-size: 0.9em;
+    color: var(--bd-text-medium);
+}
+
+.bd-user-settings-info {
+    background: var(--bd-section-bg-flat);
+    border: 1px solid var(--bd-border);
+    border-radius: var(--bd-border-radius-small);
+    padding: 20px;
+}
+
+.bd-user-settings-info h4 {
+    margin: 0 0 12px 0;
+    color: var(--bd-text-dark);
+}
+
+.bd-user-settings-info ul {
+    margin: 8px 0 0 20px;
+    color: var(--bd-text-medium);
+}
+
+/* Form Actions */
+.bd-form-actions {
+    padding-top: 32px;
+    border-top: 1px solid var(--bd-border);
+    margin-top: 40px;
+    text-align: left;
+}
+
+.bd-form-actions .button {
+    min-width: 160px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: var(--bd-border-radius-small);
+}
+
+/* Form Sections */
+.bd-form-section {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 2px solid var(--bd-border);
+    position: relative;
+}
+
+.bd-form-section:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.bd-section-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--bd-text-dark);
+    margin: 0 0 8px 0;
+    background: var(--bd-primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bd-section-description {
+    font-size: 0.95em;
+    color: var(--bd-text-medium);
+    margin: 0 0 24px 0;
+    line-height: 1.4;
+}
+
+/* Role Selection Styling */
+.bd-role-selection {
+    margin-top: 16px;
+    margin-left: 20px;
+    padding: 16px;
+    background: var(--bd-section-bg-flat);
+    border-radius: var(--bd-border-radius-small);
+    border: 1px solid var(--bd-border);
+}
+
+.bd-roles-label {
+    margin: 0 0 12px 0 !important;
+    font-weight: 600 !important;
+    color: var(--bd-text-dark) !important;
+}
+
+.bd-roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px 16px;
+    margin-top: 8px;
+}
+
+.bd-role-checkbox {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px 0 !important;
+    margin: 0 !important;
+    font-size: 0.9em !important;
+    color: var(--bd-text-medium) !important;
+    cursor: pointer !important;
+    line-height: 1.3 !important;
+    transition: var(--bd-transition);
+}
+
+.bd-role-checkbox:hover {
+    color: var(--bd-text-dark) !important;
+}
+
+.bd-role-checkbox input[type="checkbox"] {
+    margin: 0 !important;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--bd-primary);
+}
+
+/* Enhanced spacing between form groups in sections */
+.bd-form-section .bd-form-group {
+    margin-bottom: 32px;
+}
+
+.bd-form-section .bd-form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .bd-form-section {
+        margin-top: 32px;
+        padding-top: 24px;
+    }
+    
+    .bd-roles-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    
+    .bd-role-selection {
+        margin-left: 0;
+        margin-top: 12px;
+    }
+    
+    .bd-form-actions .button {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bd-plugins-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bd-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bd-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .bd-icon {
+        font-size: 2.5em;
+    }
+    
+    .bd-header-actions {
+        margin-left: 0;
+    }
+    
+    .bd-tab-nav {
+        flex-wrap: wrap;
+    }
+    
+    .bd-tab-button {
+        flex: 1 1 50%;
+        min-width: 0;
+    }
+    
+    .gradient-text {
+        font-size: 2em;
+    }
+    
+    .bd-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Fix toggle labels on mobile */
+    .bd-toggle {
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .bd-toggle-label {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .bd-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .bd-overview,
+    .bd-cleandash-admin {
+        padding: 10px;
+    }
+    
+    .bd-card-header,
+    .bd-card-body {
+        padding: 16px;
+    }
+    
+    .bd-tab-content {
+        padding: 20px 16px;
+    }
+    
+    .bd-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Force full width for toggle labels on small screens */
+    .bd-toggle {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .bd-toggle-label {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* WordPress Admin Compatibility */
+.wrap .bd-button {
+    margin-right: 8px;
+}
+
+/* Final fixes for WordPress admin compatibility */
+.bd-cleandash-admin .bd-card-body form .bd-form-group {
+    overflow: visible !important;
+    max-width: 100% !important;
+}
+
+.bd-cleandash-admin .bd-card-body form .bd-form-group .bd-toggle {
+    overflow: visible !important;
+    max-width: 100% !important;
+}
+
+.bd-cleandash-admin .bd-card-body form .bd-form-group .bd-toggle .bd-toggle-label {
+    overflow: visible !important;
+    max-width: none !important;
+    flex: 1 1 auto !important;
+}
+
+/* Ensure WordPress admin styles don't interfere */
+.bd-cleandash-admin * {
+    box-sizing: border-box;
+}
+
+.bd-cleandash-admin .bd-form-group {
+    clear: both;
+    overflow: visible;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Admin Bar Hiding Support */
+body.bd-hide-admin-bar #wpadminbar {
+    display: none !important;
+}
+
+body.bd-hide-admin-bar.wp-toolbar {
+    padding-top: 0 !important;
+}
+
+body.bd-hide-admin-bar.admin-bar {
+    margin-top: 0 !important;
+}
+
+body.bd-hide-admin-bar #wpwrap {
+    margin-top: 0 !important;
+}
+
+/* Additional responsive admin bar hiding */
+@media screen and (max-width: 782px) {
+    body.bd-hide-admin-bar.wp-toolbar {
+        padding-top: 0 !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body.bd-hide-admin-bar #wpadminbar {
+        position: fixed;
+        top: -46px;
+    }
+}
+
+/* Blacklist Table Styles */
+.bd-blacklist-table {
+    margin-top: 20px;
+}
+
+.bd-blacklist-table .wp-list-table {
+    border: 1px solid var(--bd-border);
+    border-radius: var(--bd-border-radius-small);
+    overflow: hidden;
+    box-shadow: var(--bd-shadow-light);
+}
+
+.bd-blacklist-table .wp-list-table th {
+    background: var(--bd-header-bg);
+    border-bottom: 1px solid var(--bd-border);
+    padding: 12px 16px;
+    font-weight: 600;
+    color: var(--bd-text-dark);
+}
+
+.bd-blacklist-table .wp-list-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--bd-border);
+    vertical-align: middle;
+}
+
+.bd-blacklist-table .wp-list-table tr:last-child td {
+    border-bottom: none;
+}
+
+.bd-blacklist-table .wp-list-table tr:hover {
+    background: var(--bd-section-bg-flat);
+}
+
+/* Badge Styles */
+.bd-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: var(--bd-shadow-light);
+}
+
+.bd-badge-notice {
+    background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 100%);
+    color: #92400e;
+}
+
+.bd-badge-widget {
+    background: linear-gradient(135deg, #dbeafe 0%, #3b82f6 100%);
+    color: #1e40af;
+}
+
+.bd-badge-user {
+    background: linear-gradient(135deg, #e0f2fe 0%, #0891b2 100%);
+    color: #0e7490;
+}
+
+.bd-badge-role {
+    background: linear-gradient(135deg, #f3e8ff 0%, #8b5cf6 100%);
+    color: #6b21a8;
+}
+
+.bd-badge-global {
+    background: linear-gradient(135deg, #dcfce7 0%, #16a34a 100%);
+    color: #15803d;
+}
+
+/* Empty State */
+.bd-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--bd-text-light);
+}
+
+.bd-empty-state p {
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+.bd-empty-state p:first-child {
+    font-weight: 600;
+    color: var(--bd-text-medium);
+}
+
+/* Loading and Error States */
+.bd-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--bd-text-light);
+    font-style: italic;
+}
+
+.bd-error {
+    padding: 20px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--bd-border-radius-small);
+    color: #dc2626;
+    text-align: center;
+}
+
+/* User Statistics Table */
+.bd-user-stats {
+    margin-top: 20px;
+}
+
+.bd-user-stats h4 {
+    margin: 0 0 16px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--bd-text-dark);
+}
+
+.bd-user-stats .wp-list-table {
+    border: 1px solid var(--bd-border);
+    border-radius: var(--bd-border-radius-small);
+    overflow: hidden;
+    box-shadow: var(--bd-shadow-light);
+}
+
+.bd-user-stats .wp-list-table th {
+    background: var(--bd-header-bg);
+    border-bottom: 1px solid var(--bd-border);
+    padding: 12px 16px;
+    font-weight: 600;
+    color: var(--bd-text-dark);
+}
+
+.bd-user-stats .wp-list-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--bd-border);
+    vertical-align: middle;
+}
+
+.bd-user-stats .wp-list-table tr:last-child td {
+    border-bottom: none;
+}
+
+.bd-user-stats .wp-list-table tr:hover {
+    background: var(--bd-section-bg-flat);
+}
+
+/* Responsive adjustments for tables */
+@media (max-width: 768px) {
+    .bd-blacklist-table .wp-list-table,
+    .bd-user-stats .wp-list-table {
+        font-size: 0.9em;
+    }
+    
+    .bd-blacklist-table .wp-list-table th,
+    .bd-blacklist-table .wp-list-table td,
+    .bd-user-stats .wp-list-table th,
+    .bd-user-stats .wp-list-table td {
+        padding: 8px 12px;
+    }
+    
+    .bd-badge {
+        font-size: 0.75em;
+        padding: 3px 8px;
+    }
+}

@@ -1,0 +1,1160 @@
+/*
+ * BD CleanDash Dashboard Styles
+ * Styles for dashboard cleanup functionality
+ */
+
+/* Hide Button Styles - Maximum specificity */
+body .bd-hide-button,
+.wrap .bd-hide-button,
+#wpbody .bd-hide-button,
+#wpbody-content .bd-hide-button {
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    z-index: 99999 !important;
+    background: #667eea !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    line-height: 1.2 !important;
+    text-decoration: none !important;
+    min-width: 45px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    outline: none !important;
+    text-shadow: none !important;
+    box-sizing: border-box !important;
+}
+
+body .bd-hide-button:hover,
+.wrap .bd-hide-button:hover,
+#wpbody .bd-hide-button:hover,
+#wpbody-content .bd-hide-button:hover {
+    background: #5a67d8 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+body .bd-hide-button:focus,
+.wrap .bd-hide-button:focus,
+#wpbody .bd-hide-button:focus,
+#wpbody-content .bd-hide-button:focus {
+    outline: 2px solid #4299e1 !important;
+    outline-offset: 2px !important;
+}
+
+body .bd-hide-button.bd-show-button,
+.wrap .bd-hide-button.bd-show-button,
+#wpbody .bd-hide-button.bd-show-button,
+#wpbody-content .bd-hide-button.bd-show-button {
+    background: #10b981 !important;
+    color: #ffffff !important;
+}
+
+body .bd-hide-button.bd-show-button:hover,
+.wrap .bd-hide-button.bd-show-button:hover,
+#wpbody .bd-hide-button.bd-show-button:hover,
+#wpbody-content .bd-hide-button.bd-show-button:hover {
+    background: #059669 !important;
+    color: #ffffff !important;
+}
+
+/* Container Hover States */
+.bd-hideable-container {
+    position: relative !important;
+    transition: all 0.2s ease !important;
+}
+
+.bd-hideable-container:hover {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1) !important;
+}
+
+.bd-hideable-container:hover .bd-hide-button {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+.bd-hideable-container .bd-hide-button {
+    opacity: 0.8 !important;
+}
+
+/* Hidden Element Styles */
+.bd-hidden-element {
+    opacity: 0.3 !important;
+    transform: scale(0.98) !important;
+    transition: all 0.3s ease !important;
+    pointer-events: none !important;
+    position: relative !important;
+}
+
+.bd-hidden-element::after {
+    content: attr(data-bd-hidden-message);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+/* Temporary Hide (Session Only) */
+.bd-temp-hidden {
+    display: none !important;
+}
+
+/* Notice Specific Styles */
+.notice.bd-hideable-container {
+    border-left: 4px solid transparent !important;
+}
+
+.notice.bd-hideable-container:hover {
+    border-left-color: rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Widget Specific Styles */
+.postbox.bd-hideable-container {
+    border: 1px solid transparent !important;
+}
+
+.postbox.bd-hideable-container:hover {
+    border-color: rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Meta Box Styles */
+#normal-sortables .postbox.bd-hideable-container,
+#side-sortables .postbox.bd-hideable-container,
+#column3-sortables .postbox.bd-hideable-container,
+#column4-sortables .postbox.bd-hideable-container {
+    margin-bottom: 20px;
+}
+
+/* Button Style Variations */
+.bd-hide-button.style-minimal {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #666 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+}
+
+.bd-hide-button.style-minimal:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    color: #333 !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.bd-hide-button.style-bold {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.bd-hide-button.style-bold:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Tooltip Styles */
+.bd-tooltip {
+    position: relative;
+}
+
+.bd-tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10000;
+    margin-bottom: 4px;
+}
+
+.bd-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10000;
+}
+
+.bd-tooltip:hover::before,
+.bd-tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Animation Classes */
+.bd-fade-out {
+    animation: bdFadeOut 0.3s ease-in-out forwards;
+}
+
+.bd-fade-in {
+    animation: bdFadeIn 0.3s ease-in-out forwards;
+}
+
+.bd-slide-out {
+    animation: bdSlideOut 0.3s ease-in-out forwards;
+}
+
+.bd-slide-in {
+    animation: bdSlideIn 0.3s ease-in-out forwards;
+}
+
+@keyframes bdFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes bdFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bdSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 200px;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+        max-height: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@keyframes bdSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 200px;
+    }
+}
+
+/* Quick Actions Bar */
+.bd-quick-actions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.bd-quick-actions.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bd-quick-action-btn {
+    background: none !important;
+    border: none !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    color: #666 !important;
+    font-size: 16px !important;
+}
+
+.bd-quick-action-btn:hover {
+    background: rgba(102, 126, 234, 0.1) !important;
+    color: #667eea !important;
+    transform: scale(1.1) !important;
+}
+
+/* Status Indicators */
+.bd-status-indicator {
+    position: fixed;
+    top: 32px;
+    right: 20px;
+    background: rgba(102, 126, 234, 0.95);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bd-status-indicator.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bd-status-indicator.success {
+    background: rgba(16, 185, 129, 0.95);
+}
+
+.bd-status-indicator.error {
+    background: rgba(239, 68, 68, 0.95);
+}
+
+/* BD Plugin Status Styles */
+.bd-plugin-status .status-active {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.bd-plugin-status .status-inactive {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+}
+
+.bd-plugin-status .status-not-installed {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+}
+
+.bd-plugin-status .status-coming-soon {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Enhanced Plugin Card Styling */
+.bd-plugin-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.bd-plugin-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bd-plugin-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(102, 126, 234, 0.1);
+}
+
+.bd-plugin-card:hover::before {
+    opacity: 1;
+}
+
+/* Active plugin styling */
+.bd-plugin-card.active {
+    border-color: rgba(16, 185, 129, 0.2);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.02) 0%, rgba(4, 120, 87, 0.02) 100%);
+}
+
+.bd-plugin-card.active::before {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    opacity: 1;
+}
+
+.bd-plugin-card.active:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+
+/* Inactive plugin styling */
+.bd-plugin-card.inactive {
+    border-color: rgba(245, 158, 11, 0.15);
+    background: rgba(245, 158, 11, 0.02);
+}
+
+.bd-plugin-card.inactive::before {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.bd-plugin-card.inactive:hover {
+    border-color: rgba(245, 158, 11, 0.25);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.1);
+}
+
+/* Not installed plugin styling */
+.bd-plugin-card.not-installed {
+    border-color: rgba(107, 114, 128, 0.15);
+    background: rgba(107, 114, 128, 0.02);
+}
+
+.bd-plugin-card.not-installed::before {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+}
+
+.bd-plugin-card.not-installed:hover {
+    border-color: rgba(107, 114, 128, 0.25);
+    box-shadow: 0 8px 25px rgba(107, 114, 128, 0.1);
+}
+
+/* Coming soon plugin styling */
+.bd-plugin-card.placeholder {
+    border-color: rgba(139, 92, 246, 0.15);
+    background: rgba(139, 92, 246, 0.02);
+    opacity: 0.8;
+}
+
+.bd-plugin-card.placeholder::before {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.bd-plugin-card.placeholder:hover {
+    border-color: rgba(139, 92, 246, 0.25);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.1);
+    opacity: 1;
+}
+
+/* Plugin icon styling */
+.bd-plugin-icon {
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+    text-align: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.bd-plugin-card:hover .bd-plugin-icon {
+    background: rgba(102, 126, 234, 0.15);
+    transform: scale(1.05);
+}
+
+.bd-plugin-card.active .bd-plugin-icon {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.bd-plugin-card.active:hover .bd-plugin-icon {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+.bd-plugin-card.inactive .bd-plugin-icon {
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.bd-plugin-card.inactive:hover .bd-plugin-icon {
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.bd-plugin-card.not-installed .bd-plugin-icon {
+    background: rgba(107, 114, 128, 0.1);
+}
+
+.bd-plugin-card.not-installed:hover .bd-plugin-icon {
+    background: rgba(107, 114, 128, 0.15);
+}
+
+.bd-plugin-card.placeholder .bd-plugin-icon {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.bd-plugin-card.placeholder:hover .bd-plugin-icon {
+    background: rgba(139, 92, 246, 0.15);
+}
+
+/* Plugin card text styling */
+.bd-plugin-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.3;
+}
+
+.bd-plugin-card p {
+    margin: 0 0 16px 0;
+    color: #6b7280;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* Plugin status container */
+.bd-plugin-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.bd-plugin-status .version {
+    background: rgba(107, 114, 128, 0.1);
+    color: #4b5563;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* Button styling enhancements */
+.bd-plugin-card .bd-button {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.bd-plugin-card .bd-button:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+.bd-plugin-card .bd-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.bd-plugin-card .button-primary.bd-button {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    color: white;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.bd-plugin-card .button-primary.bd-button:hover {
+    background: linear-gradient(135deg, #059669 0%, #065f46 100%);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Plugin card enhancements for different statuses */
+.bd-plugin-card:not(.active):not(.placeholder) .bd-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white;
+    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+    border: none;
+}
+
+.bd-plugin-card:not(.active):not(.placeholder) .bd-button:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Auto-detected plugin indicator */
+.bd-plugin-card.auto-detected::after {
+    content: "Auto-detected";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Grid enhancements */
+.bd-plugins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+/* Plugin card wrapper for staggered animations */
+.bd-plugin-card-wrapper {
+    animation: bdPluginCardFadeIn 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Staggered animation delays */
+.bd-plugin-card-wrapper[data-card-index="1"] { animation-delay: 0ms; }
+.bd-plugin-card-wrapper[data-card-index="2"] { animation-delay: 100ms; }
+.bd-plugin-card-wrapper[data-card-index="3"] { animation-delay: 200ms; }
+.bd-plugin-card-wrapper[data-card-index="4"] { animation-delay: 300ms; }
+.bd-plugin-card-wrapper[data-card-index="5"] { animation-delay: 400ms; }
+.bd-plugin-card-wrapper[data-card-index="6"] { animation-delay: 500ms; }
+.bd-plugin-card-wrapper[data-card-index="7"] { animation-delay: 600ms; }
+.bd-plugin-card-wrapper[data-card-index="8"] { animation-delay: 700ms; }
+
+/* Enhanced plugin card styling */
+.bd-plugin-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Professional hover effects */
+.bd-plugin-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.bd-plugin-card:hover .bd-plugin-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.bd-plugin-card:hover .bd-button {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Active plugin styling */
+.bd-plugin-card.active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+}
+
+.bd-plugin-card.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px 16px 0 0;
+}
+
+.bd-plugin-card.active .bd-plugin-status .status-active {
+    background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* Inactive plugin styling */
+.bd-plugin-card.inactive {
+    border-color: rgba(251, 146, 60, 0.3);
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.02) 0%, rgba(249, 115, 22, 0.02) 100%);
+}
+
+.bd-plugin-card.inactive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #fb923d 0%, #f97316 100%);
+    border-radius: 16px 16px 0 0;
+}
+
+/* Not-installed plugin styling */
+.bd-plugin-card.not-installed {
+    border-color: rgba(156, 163, 175, 0.3);
+    background: linear-gradient(135deg, rgba(156, 163, 175, 0.02) 0%, rgba(107, 114, 128, 0.02) 100%);
+}
+
+.bd-plugin-card.not-installed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9ca3af 0%, #6b7280 100%);
+    border-radius: 16px 16px 0 0;
+}
+
+/* Coming soon styling */
+.bd-plugin-card.placeholder {
+    opacity: 0.75;
+    border-style: dashed;
+    border-color: rgba(156, 163, 175, 0.4);
+    background: linear-gradient(135deg, rgba(249, 250, 251, 0.8) 0%, rgba(243, 244, 246, 0.6) 100%);
+}
+
+.bd-plugin-card.placeholder:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Plugin icon enhancements */
+.bd-plugin-icon {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Plugin card content */
+.bd-plugin-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+.bd-plugin-card:hover h3 {
+    color: #667eea;
+}
+
+.bd-plugin-card p {
+    margin: 0 0 24px 0;
+    color: #6b7280;
+    line-height: 1.6;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+/* Status and version styling */
+.bd-plugin-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.bd-plugin-status .status-active {
+    color: #059669;
+    font-weight: 700;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.bd-plugin-status .status-inactive {
+    color: #f97316;
+    font-weight: 700;
+    background: rgba(251, 146, 60, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(251, 146, 60, 0.2);
+}
+
+.bd-plugin-status .status-not-installed {
+    color: #6b7280;
+    font-weight: 700;
+    background: rgba(156, 163, 175, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(156, 163, 175, 0.2);
+}
+
+.bd-plugin-status .status-coming-soon {
+    color: #6b7280;
+    font-weight: 600;
+    background: rgba(249, 250, 251, 0.8);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(209, 213, 219, 0.5);
+    font-style: italic;
+}
+
+.bd-plugin-status .version {
+    color: #9ca3af;
+    font-weight: 500;
+    font-size: 12px;
+    background: rgba(249, 250, 251, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Button enhancements */
+.bd-plugin-card .bd-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    cursor: pointer;
+    border: 2px solid transparent;
+    margin-top: auto;
+    text-align: center;
+    display: block;
+}
+
+.bd-plugin-card .bd-button:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.bd-plugin-card .bd-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.bd-plugin-card .bd-button:disabled {
+    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+    color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.bd-plugin-card .bd-button:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Auto-detected plugin indicator */
+.bd-plugin-card.auto-detected::after {
+    content: 'Auto-detected';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* BD Overview Page Enhancements */
+.bd-overview .bd-header {
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.bd-overview .bd-footer {
+    background: rgba(249, 250, 251, 0.8);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 40px 20px 0;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.bd-overview .bd-footer p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.bd-overview .bd-footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.bd-overview .bd-footer a:hover {
+    color: #5a67d8;
+}
+
+/* Plugin card loading animation */
+@keyframes bdPluginCardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bd-hide-button {
+        font-size: 10px !important;
+        padding: 3px 6px !important;
+    }
+    
+    .bd-quick-actions {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px;
+    }
+    
+    .bd-status-indicator {
+        right: 10px;
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+    
+    /* Plugin card responsive styles */
+    .bd-plugins-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 10px;
+    }
+    
+    .bd-plugin-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .bd-plugin-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+    
+    .bd-plugin-icon {
+        font-size: 36px !important;
+    }
+    
+    .bd-plugin-card h3 {
+        font-size: 18px;
+    }
+    
+    .bd-plugin-card p {
+        font-size: 13px;
+    }
+    
+    .bd-plugin-card .bd-button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bd-plugins-grid {
+        padding: 0 5px;
+        gap: 12px;
+    }
+    
+    .bd-plugin-card {
+        padding: 16px;
+        border-radius: 10px;
+    }
+    
+    .bd-plugin-icon {
+        font-size: 32px !important;
+        margin-bottom: 16px;
+    }
+    
+    .bd-plugin-card h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .bd-plugin-card p {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .bd-plugin-status {
+        margin-bottom: 16px;
+        font-size: 12px;
+    }
+}
+
+/* Large screens - 4 columns */
+@media (min-width: 1400px) {
+    .bd-plugins-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 28px;
+        padding: 0 40px;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .bd-hide-button {
+        background: #000 !important;
+        color: #fff !important;
+        border: 2px solid #fff !important;
+    }
+    
+    .bd-hide-button:hover {
+        background: #333 !important;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .bd-hide-button,
+    .bd-hideable-container,
+    .bd-hidden-element,
+    .bd-quick-actions,
+    .bd-status-indicator,
+    .bd-plugin-card,
+    .bd-plugin-card-wrapper,
+    .bd-plugin-icon,
+    .bd-button {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+    
+    .bd-plugin-card-wrapper {
+        opacity: 1 !important;
+    }
+    
+    .bd-plugin-card:hover {
+        transform: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .bd-hide-button,
+    .bd-quick-actions,
+    .bd-status-indicator {
+        display: none !important;
+    }
+    
+    .bd-hidden-element {
+        display: none !important;
+    }
+}
+
+/* Additional force visibility rules */
+.bd-hideable-container .bd-hide-button {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 999999 !important;
+}
+
+/* Ensure buttons are visible on all notice types */
+.notice .bd-hide-button,
+.notice-success .bd-hide-button,
+.notice-error .bd-hide-button,
+.notice-warning .bd-hide-button,
+.notice-info .bd-hide-button,
+.updated .bd-hide-button,
+.error .bd-hide-button,
+.postbox .bd-hide-button {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999999 !important;
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+}
+
+/* Force container positioning */
+.bd-hideable-container {
+    position: relative !important;
+}
