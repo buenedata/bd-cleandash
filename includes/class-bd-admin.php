@@ -33,44 +33,44 @@ class BD_Admin {
         add_action('wp_ajax_bd_get_blacklist', array($this, 'ajax_get_blacklist'));
         add_action('wp_ajax_bd_remove_blacklist_item', array($this, 'ajax_remove_blacklist_item'));
         add_action('wp_ajax_bd_check_github_updates', array($this, 'ajax_check_github_updates'));
-        add_action('wp_ajax_bd_check_github_updates', array($this, 'ajax_check_github_updates'));
     }
     
     /**
      * Add admin menu following BD menu integration guide
      */
-    public function add_admin_menu() {
-        // Check if BD main menu already exists
+public function add_admin_menu() {
+public function add_admin_menu() {
         global $menu;
         $bd_menu_exists = false;
         foreach ($menu as $menu_item) {
-            if (isset($menu_item[0]) && strpos($menu_item[0], 'Buene Data') !== false) {
+            // Sjekk om noen meny har slug 'buene-data'
+            if (isset($menu_item[2]) && $menu_item[2] === 'buene-data') {
                 $bd_menu_exists = true;
                 break;
             }
         }
-        
-        // If BD main menu doesn't exist, create it
+
         if (!$bd_menu_exists) {
+            // Hvis ingen "Buene Data" meny finnes, opprett den
             add_menu_page(
-                __('Buene Data', 'bd-cleandash'),
-                __('Buene Data', 'bd-cleandash'),
+                __('Buene Data', 'bd-plugin'), // NB: endre text domain om nødvendig
+                __('Buene Data', 'bd-plugin'),
                 'manage_options',
-                'buene-data',
-                array($this, 'render_bd_overview'),
+                'buene-data', // SLUGGEN MÅ VÆRE IDENTISK I ALLE PLUGINS
+                '', // Ingen callback på hovedmenyen (kan evt. ha en oversiktsside her)
                 'data:image/svg+xml;base64,' . base64_encode('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 7V18H7V14H13V18H17V7L10 2Z" fill="currentColor"/></svg>'),
                 58.5
             );
         }
-        
-        // Add CleanDash as submenu
+
+        // Legg til din plugin som undermeny under Buene Data
         add_submenu_page(
             'buene-data',
-            __('BD CleanDash', 'bd-cleandash'),
-            __('🧹 CleanDash', 'bd-cleandash'),
+            __('BD CleanDash', 'bd-plugin'),
+            __('BD CleanDash', 'bd-plugin'),
             'manage_options',
-            'bd-cleandash',
-            array($this, 'render_admin_page')
+            'bd-clean-dash',
+            array($this, 'render_main_page')
         );
     }
     
@@ -111,35 +111,48 @@ class BD_Admin {
      * Enqueue admin scripts and styles
      */
     public function enqueue_admin_scripts($hook_suffix) {
-        error_log("BD CleanDash: enqueue_admin_scripts called with hook: $hook_suffix");
+        // Debug logging flag
+        $bd_cleandash_debug = defined('BD_CLEANDASH_DEBUG') && BD_CLEANDASH_DEBUG;
+
+        if ($bd_cleandash_debug) {
+            error_log("BD CleanDash: enqueue_admin_scripts called with hook: $hook_suffix");
+        }
         
         // Always load dashboard scripts if cleanup is enabled - on ALL admin pages
         if (get_option('bd_cleandash_enabled', '1') === '1') {
-            error_log("BD CleanDash: Plugin enabled, enqueuing dashboard scripts");
+            if ($bd_cleandash_debug) {
+                error_log("BD CleanDash: Plugin enabled, enqueuing dashboard scripts");
+            }
             $this->enqueue_dashboard_scripts();
         }
         
         // Force admin scripts on BD pages - simplified check
         $current_page = isset($_GET['page']) ? $_GET['page'] : '';
-        error_log("BD CleanDash: Checking admin page - Hook: $hook_suffix, Page: $current_page, Is BD page: " . ($current_page === 'bd-cleandash' || $current_page === 'buene-data' || strpos($hook_suffix, 'bd-cleandash') !== false || strpos($hook_suffix, 'buene-data') !== false ? 'yes' : 'no'));
+        if ($bd_cleandash_debug) {
+            error_log("BD CleanDash: Checking admin page - Hook: $hook_suffix, Page: $current_page, Is BD page: " . ($current_page === 'bd-cleandash' || $current_page === 'buene-data' || strpos($hook_suffix, 'bd-cleandash') !== false || strpos($hook_suffix, 'buene-data') !== false ? 'yes' : 'no'));
+        }
         
         if ($current_page === 'bd-cleandash' || $current_page === 'buene-data' || strpos($hook_suffix, 'bd-cleandash') !== false || strpos($hook_suffix, 'buene-data') !== false) {
-            error_log("BD CleanDash: FORCED admin script loading for page: $current_page, hook: $hook_suffix");
+            if ($bd_cleandash_debug) {
+                error_log("BD CleanDash: FORCED admin script loading for page: $current_page, hook: $hook_suffix");
+            }
             
             // Ensure jQuery is loaded
             wp_enqueue_script('jquery');
             
             // Enqueue admin CSS
             wp_enqueue_style(
+            wp_enqueue_script(
                 'bd-cleandash-admin',
-                BD_CLEANDASH_PLUGIN_URL . 'assets/css/admin.css',
-                array(),
-                BD_CLEANDASH_VERSION
+                $script_url,
+                array('jquery'),
+                BD_CLEANDASH_VERSION, // Use only plugin version for caching
+                true
             );
-            
-            // Debug script URL and add cache busting
             $script_url = BD_CLEANDASH_PLUGIN_URL . 'assets/js/admin.js';
-            error_log("BD CleanDash: Script URL: $script_url");
+            if ($bd_cleandash_debug) {
+                error_log("BD CleanDash: Script URL: $script_url");
+            }
             
             // Enqueue admin JS with explicit jQuery dependency and cache busting
             wp_enqueue_script(
@@ -201,13 +214,17 @@ class BD_Admin {
                 )
             ));
             
-            error_log("BD CleanDash: Admin scripts enqueued successfully");
+            if ($bd_cleandash_debug) {
+                error_log("BD CleanDash: Admin scripts enqueued successfully");
+            }
             return;
         }
         
         // Only load admin-specific styles on our admin pages
         if (!$this->is_bd_admin_page($hook_suffix)) {
-            error_log("BD CleanDash: Not a BD admin page, skipping admin scripts");
+            if ($bd_cleandash_debug) {
+                error_log("BD CleanDash: Not a BD admin page, skipping admin scripts");
+            }
             return;
         }
     }
@@ -216,7 +233,12 @@ class BD_Admin {
      * Enqueue dashboard cleanup scripts
      */
     public function enqueue_dashboard_scripts() {
-        error_log("BD CleanDash: enqueue_dashboard_scripts called");
+        // Debug logging flag
+        $bd_cleandash_debug = defined('BD_CLEANDASH_DEBUG') && BD_CLEANDASH_DEBUG;
+
+        if ($bd_cleandash_debug) {
+            error_log("BD CleanDash: enqueue_dashboard_scripts called");
+        }
         
         wp_enqueue_style(
             'bd-cleandash-dashboard',
@@ -255,7 +277,9 @@ class BD_Admin {
             )
         ));
         
-        error_log("BD CleanDash: Dashboard scripts enqueued with " . count($hidden_elements) . " hidden elements");
+        if ($bd_cleandash_debug) {
+            error_log("BD CleanDash: Dashboard scripts enqueued with " . count($hidden_elements) . " hidden elements");
+        }
     }
     
     /**
@@ -281,7 +305,12 @@ class BD_Admin {
         $is_bd_page = in_array($hook_suffix, $bd_pages) || 
                      (isset($_GET['page']) && (strpos($_GET['page'], 'bd-') === 0 || $_GET['page'] === 'buene-data'));
         
-        error_log("BD CleanDash: Checking admin page - Hook: $hook_suffix, Page: " . (isset($_GET['page']) ? $_GET['page'] : 'none') . ", Is BD page: " . ($is_bd_page ? 'yes' : 'no'));
+        // Debug logging flag
+        $bd_cleandash_debug = defined('BD_CLEANDASH_DEBUG') && BD_CLEANDASH_DEBUG;
+
+        if ($bd_cleandash_debug) {
+            error_log("BD CleanDash: Checking admin page - Hook: $hook_suffix, Page: " . (isset($_GET['page']) ? $_GET['page'] : 'none') . ", Is BD page: " . ($is_bd_page ? 'yes' : 'no'));
+        }
         
         return $is_bd_page;
     }
@@ -291,7 +320,7 @@ class BD_Admin {
      */
     public function handle_settings_submit() {
         // Verify nonce
-        if (!wp_verify_nonce($_POST['_wpnonce'], 'bd_cleandash_settings')) {
+        if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'bd_cleandash_settings')) {
             wp_die(__('Security check failed.', 'bd-cleandash'));
         }
         
@@ -348,7 +377,7 @@ class BD_Admin {
      */
     public function ajax_toggle_enabled() {
         // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
+        if (!isset($_POST['nonce']) || empty($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
             wp_die('Security check failed');
         }
         
@@ -357,7 +386,7 @@ class BD_Admin {
             wp_send_json_error('Insufficient permissions');
         }
         
-        $enabled = sanitize_text_field($_POST['enabled']);
+        $enabled = sanitize_text_field(isset($_POST['enabled']) ? $_POST['enabled'] : '');
         update_option('bd_cleandash_enabled', $enabled);
         
         $message = $enabled === '1' ? 
@@ -372,7 +401,7 @@ class BD_Admin {
      */
     public function ajax_get_blacklist() {
         // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
+        if (!isset($_POST['nonce']) || empty($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
             wp_die('Security check failed');
         }
         
@@ -384,8 +413,13 @@ class BD_Admin {
         
         $data = $plugin_instance->blacklist->get_all_blacklisted();
         
+        // Debug logging flag
+        $bd_cleandash_debug = defined('BD_CLEANDASH_DEBUG') && BD_CLEANDASH_DEBUG;
+
         // Debug: Log the actual data being returned
-        error_log('BD CleanDash AJAX: Returning blacklist data: ' . json_encode($data));
+        if ($bd_cleandash_debug) {
+            error_log('BD CleanDash AJAX: Returning blacklist data: ' . json_encode($data));
+        }
         
         wp_send_json_success($data);
     }
@@ -395,7 +429,7 @@ class BD_Admin {
      */
     public function ajax_remove_blacklist_item() {
         // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
+        if (!isset($_POST['nonce']) || empty($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
             wp_die('Security check failed');
         }
         
@@ -404,7 +438,7 @@ class BD_Admin {
             wp_send_json_error('Insufficient permissions');
         }
         
-        $item_id = intval($_POST['item_id']);
+        $item_id = intval(isset($_POST['item_id']) ? $_POST['item_id'] : 0);
         
         global $wpdb;
         $table_name = $wpdb->prefix . 'bd_cleandash_blacklist';
@@ -427,7 +461,7 @@ class BD_Admin {
      */
     public function ajax_check_github_updates() {
         // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
+        if (!isset($_POST['nonce']) || empty($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'bd_cleandash_admin_nonce')) {
             wp_die('Security check failed');
         }
         
