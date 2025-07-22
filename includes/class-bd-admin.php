@@ -15,6 +15,7 @@ if (!defined('ABSPATH')) {
  * BD_Admin class
  */
 class BD_Admin {
+    require_once __DIR__ . '/bd-menu-helper.php';
     
     /**
      * Initialize admin functionality
@@ -38,16 +39,7 @@ class BD_Admin {
     /**
      * Add admin menu following BD menu integration guide
      */
-public function add_admin_menu() {
-public function add_admin_menu() {
-        global $menu;
-        $bd_menu_exists = false;
-        foreach ($menu as $menu_item) {
-            // Sjekk om noen meny har slug 'buene-data'
-            if (isset($menu_item[2]) && $menu_item[2] === 'buene-data') {
-                $bd_menu_exists = true;
-                break;
-            }
+
         }
 
         if (!$bd_menu_exists) {
