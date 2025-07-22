@@ -3,7 +3,7 @@
  * Plugin Name: BD CleanDash
  * Plugin URI: https://buenedata.no/plugins/bd-cleandash
  * Description: Clean up your WordPress dashboard by hiding unwanted notices and widgets. Maintain a distraction-free admin experience with powerful blacklist management.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Buene Data
  * Author URI: https://buenedata.no
  * Text Domain: bd-cleandash
@@ -29,7 +29,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('BD_CLEANDASH_VERSION', '1.0.4');
+define('BD_CLEANDASH_VERSION', '1.0.5');
 define('BD_CLEANDASH_PLUGIN_FILE', __FILE__);
 define('BD_CLEANDASH_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('BD_CLEANDASH_PLUGIN_URL', plugin_dir_url(__FILE__));
