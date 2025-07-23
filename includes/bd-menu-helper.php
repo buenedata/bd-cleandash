@@ -6,50 +6,73 @@
 
 if (!function_exists('bd_add_buene_data_menu')) {
     function bd_add_buene_data_menu($submenu_name, $submenu_slug, $submenu_callback, $emoji = '🎨') {
-        add_action('admin_menu', function() use ($submenu_name, $submenu_slug, $submenu_callback, $emoji) {
-            global $menu;
-            $bd_menu_exists = false;
+        global $menu;
+        
+        // Sjekk om Buene Data hovedmeny allerede eksisterer
+        $bd_menu_exists = false;
+        if (is_array($menu)) {
             foreach ($menu as $menu_item) {
                 if (isset($menu_item[2]) && $menu_item[2] === 'buene-data') {
                     $bd_menu_exists = true;
                     break;
                 }
             }
-            // Opprett hovedmeny hvis ikke finnes (callback til oversiktsside)
-            if (!$bd_menu_exists) {
-                add_menu_page(
-                    __('Buene Data', 'buene-data'),
-                    __('Buene Data', 'buene-data'),
-                    'manage_options',
-                    'buene-data',
-                    'bd_buene_data_overview_page',
-                    'data:image/svg+xml;base64,' . base64_encode('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 7V18H7V14H13V18H17V7L10 2Z" fill="currentColor"/></svg>'),
-                    58.5
-                );
-            }
-            // Legg til undermeny for plugin
-            add_submenu_page(
-                'buene-data',
-                $emoji . ' ' . $submenu_name,
-                $emoji . ' ' . $submenu_name,
+        }
+        
+        // Opprett hovedmeny kun hvis den ikke finnes fra før
+        if (!$bd_menu_exists) {
+            add_menu_page(
+                __('Buene Data', 'buene-data'),
+                __('Buene Data', 'buene-data'),
                 'manage_options',
-                $submenu_slug,
-                $submenu_callback
+                'buene-data',
+                function() {
+                    if (function_exists('bd_buene_data_overview_page')) {
+                        bd_buene_data_overview_page();
+                    } else {
+                        echo '<div class="wrap"><h1>Buene Data</h1><p>Oversiktsside ikke tilgjengelig.</p></div>';
+                    }
+                },
+                'data:image/svg+xml;base64,' . base64_encode('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 7V18H7V14H13V18H17V7L10 2Z" fill="currentColor"/></svg>'),
+                58.5
             );
-        });
+        }
+        
+        // Legg alltid til denne pluginen som undermeny
+        add_submenu_page(
+            'buene-data',
+            $emoji . ' ' . $submenu_name,
+            $emoji . ' ' . $submenu_name,
+            'manage_options',
+            $submenu_slug,
+            $submenu_callback
+        );
     }
 }
 
 // Denne callbacken lager oversiktssiden (bare én plugin trenger å ha denne!)
 if (!function_exists('bd_buene_data_overview_page')) {
     function bd_buene_data_overview_page() {
+        // Debug informasjon
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('BD: bd_buene_data_overview_page called');
+        }
+        
         // Finn alle BD-plugins i plugins-mappen
         $plugins = get_plugins();
         $bd_plugins = [];
+        
+        if (empty($plugins)) {
+            echo '<div class="wrap"><h1>Buene Data</h1><p>Kunne ikke laste plugin-informasjon.</p></div>';
+            return;
+        }
+        
         foreach ($plugins as $plugin_file => $data) {
             if (
-                isset($data['Author']) &&
-                (stripos($data['Author'], 'Buene Data') !== false || stripos($data['PluginURI'], 'buenedata') !== false)
+                (isset($data['Author']) && stripos($data['Author'], 'Buene Data') !== false) ||
+                (isset($data['PluginURI']) && stripos($data['PluginURI'], 'buenedata') !== false) ||
+                (isset($data['Name']) && (stripos($data['Name'], 'BD ') === 0)) ||
+                (isset($data['TextDomain']) && stripos($data['TextDomain'], 'bd-') === 0)
             ) {
                 $is_active = is_plugin_active($plugin_file);
                 $bd_plugins[] = [
@@ -69,6 +92,17 @@ if (!function_exists('bd_buene_data_overview_page')) {
                         : '',
                 ];
             }
+        }
+        
+        // Hvis ingen BD plugins ble funnet, vis en melding
+        if (empty($bd_plugins)) {
+            echo '<div class="wrap">';
+            echo '<h1>Buene Data Plugin Suite</h1>';
+            echo '<div class="notice notice-info"><p>Ingen Buene Data plugins ble funnet. Sjekk at plugin-filene har korrekt header-informasjon.</p></div>';
+            echo '<p>For at plugins skal vises her må de ha:</p>';
+            echo '<ul><li>Author: "Buene Data"</li><li>Plugin navn som starter med "BD "</li><li>Text Domain som starter med "bd-"</li><li>Plugin URI som inneholder "buenedata"</li></ul>';
+            echo '</div>';
+            return;
         }
         // BD Branding
         $bd_contact = '<div class="bd-contact" style="text-align:center; margin-top:40px;">
@@ -103,8 +137,18 @@ if (!function_exists('bd_buene_data_overview_page')) {
                     </div>
                     <div style="margin-bottom:14px;"><span style="color:#64748b;font-size:12px;">Sist oppdatert: ' . esc_html($plugin['LastUpdated']) . '</span></div>';
             if ($plugin['Active']) {
-                $slug = explode('/', $plugin['File'])[0];
-                $url = admin_url('admin.php?page=' . $slug);
+                // Prøv å finne riktig admin-side basert på plugin navn
+                $admin_slug = '';
+                if (stripos($plugin['Name'], 'CleanDash') !== false) {
+                    $admin_slug = 'bd-cleandash';
+                } elseif (stripos($plugin['Name'], 'Client Suite') !== false) {
+                    $admin_slug = 'bd-client-suite';
+                } else {
+                    // Fallback til å bruke plugin-mappe navn
+                    $admin_slug = explode('/', $plugin['File'])[0];
+                }
+                
+                $url = admin_url('admin.php?page=' . $admin_slug);
                 echo '<a href="' . esc_url($url) . '" class="button button-primary" style="background:' . $card_gradient . ';color:white;border:none;border-radius:7px;padding:8px 24px;font-weight:600;font-size:14px;box-shadow:0 1px 3px rgba(14,165,233,0.12);transition:all .2s;">Åpne innstillinger</a>';
             } else {
                 echo '<span class="button" style="background:#f1f5f9;color:#a0aec0;border:none;border-radius:7px;padding:8px 24px;font-weight:600;font-size:14px;">Ikke aktivert</span>';

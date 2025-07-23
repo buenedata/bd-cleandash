@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/bd-menu-helper.php';
+
 /**
  * BD CleanDash Admin Interface
  *
@@ -15,7 +18,6 @@ if (!defined('ABSPATH')) {
  * BD_Admin class
  */
 class BD_Admin {
-    require_once __DIR__ . '/bd-menu-helper.php';
     
     /**
      * Initialize admin functionality
@@ -37,59 +39,40 @@ class BD_Admin {
     }
     
     /**
-     * Add admin menu following BD menu integration guide
+     * Add admin menu using BD menu helper
      */
-
-        }
-
-        if (!$bd_menu_exists) {
-            // Hvis ingen "Buene Data" meny finnes, opprett den
+    public function add_admin_menu() {
+        // Check if helper function exists
+        if (!function_exists('bd_add_buene_data_menu')) {
+            error_log('BD CleanDash: bd_add_buene_data_menu function not found! Helper file not loaded properly.');
+            // Fallback to direct menu creation
             add_menu_page(
-                __('Buene Data', 'bd-plugin'), // NB: endre text domain om nødvendig
-                __('Buene Data', 'bd-plugin'),
+                __('Buene Data', 'bd-cleandash'),
+                __('Buene Data', 'bd-cleandash'),
                 'manage_options',
-                'buene-data', // SLUGGEN MÅ VÆRE IDENTISK I ALLE PLUGINS
-                '', // Ingen callback på hovedmenyen (kan evt. ha en oversiktsside her)
+                'buene-data',
+                function() { echo '<div class="wrap"><h1>Buene Data</h1><p>Helper function not loaded.</p></div>'; },
                 'data:image/svg+xml;base64,' . base64_encode('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 7V18H7V14H13V18H17V7L10 2Z" fill="currentColor"/></svg>'),
                 58.5
             );
+            add_submenu_page(
+                'buene-data',
+                'BD CleanDash',
+                'BD CleanDash',
+                'manage_options',
+                'bd-cleandash',
+                array($this, 'render_admin_page')
+            );
+            return;
         }
-
-        // Legg til din plugin som undermeny under Buene Data
-        add_submenu_page(
-            'buene-data',
-            __('BD CleanDash', 'bd-plugin'),
-            __('BD CleanDash', 'bd-plugin'),
-            'manage_options',
-            'bd-clean-dash',
-            array($this, 'render_main_page')
+        
+        // Use the BD menu helper to integrate with Buene Data menu
+        bd_add_buene_data_menu(
+            'BD CleanDash',
+            'bd-cleandash',
+            array($this, 'render_admin_page'),
+            '🧹'
         );
-    }
-    
-    /**
-     * Render BD overview page
-     */
-    public function render_bd_overview() {
-        // Get plugin registry instance
-        $registry = BD_Plugin_Registry::get_instance();
-        
-        // Get all plugins for overview
-        $overview_plugins = $registry->get_overview_plugins();
-        
-        // Also get auto-detected plugins as fallback
-        $auto_detected = $registry->auto_detect_bd_plugins();
-        
-        // Pass data to template
-        $template_data = array(
-            'plugins' => $overview_plugins,
-            'auto_detected' => $auto_detected,
-            'registry' => $registry
-        );
-        
-        // Extract variables for template
-        extract($template_data);
-        
-        include BD_CLEANDASH_PLUGIN_DIR . 'templates/bd-overview.php';
     }
     
     /**
@@ -134,13 +117,12 @@ class BD_Admin {
             
             // Enqueue admin CSS
             wp_enqueue_style(
-            wp_enqueue_script(
                 'bd-cleandash-admin',
-                $script_url,
-                array('jquery'),
-                BD_CLEANDASH_VERSION, // Use only plugin version for caching
-                true
+                BD_CLEANDASH_PLUGIN_URL . 'assets/css/admin.css',
+                array(),
+                BD_CLEANDASH_VERSION
             );
+            
             $script_url = BD_CLEANDASH_PLUGIN_URL . 'assets/js/admin.js';
             if ($bd_cleandash_debug) {
                 error_log("BD CleanDash: Script URL: $script_url");
