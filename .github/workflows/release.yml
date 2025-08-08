@@ -89,13 +89,19 @@ jobs:
           --exclude='temp' \
           --exclude='.github' \
           --exclude='tests' \
-          --exclude='*.md' \
+          --exclude='test_*.php' \
+          --exclude='test-*.php' \
+          --exclude='check_syntax.php' \
+          --exclude='BD-GitHub-Update-System-Guide.txt' \
+          --exclude='BD-GitHub-Update-Implementation-Summary.md' \
+          --exclude='LANGUAGE-SUPPORT.md' \
           --exclude='package*.json' \
-          --exclude='composer.*' \
           --exclude='phpunit.xml' \
           --exclude='webpack.config.js' \
           --exclude='gulpfile.js' \
           --exclude='Gruntfile.js' \
+          --exclude='.vscode' \
+          --exclude='.idea' \
           . temp/$REPO_NAME/
         
         cd temp

@@ -1,0 +1,56 @@
+# Development and testing files
+test_*.php
+check_syntax.php
+test-updater.php
+test_integration.php
+
+# Documentation files (keep in repo but exclude from releases)
+BD-GitHub-Update-System-Guide.txt
+BD-GitHub-Update-Implementation-Summary.md
+LANGUAGE-SUPPORT.md
+
+# Composer files (if not needed for production)
+composer.json
+composer.lock
+vendor/
+
+# Node modules and build files
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# WordPress specific
+wp-config.php
+.htaccess
+
+# Logs
+*.log
+error_log
+debug.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Cache files
+*.cache
+cache/
