@@ -166,19 +166,40 @@ The plugin is ready to use without a build process. All assets are included.
 
 ## Automatic Updates
 
-BD CleanDash supports automatic updates directly from GitHub releases:
+BD CleanDash features a comprehensive GitHub-based automatic update system:
 
-- **Automatic Checking**: Plugin checks for updates every 12 hours
-- **WordPress Integration**: Updates appear in WordPress admin like any other plugin
-- **Secure Downloads**: Updates are downloaded securely from GitHub
+- **Automatic Checking**: Plugin checks for updates every 12 hours with intelligent caching
+- **WordPress Integration**: Native WordPress update notifications and one-click updates
+- **GitHub Actions**: Automatic release generation when code is pushed to repository
+- **Secure Downloads**: Updates are downloaded securely from GitHub releases
+- **Debug Support**: Comprehensive logging for troubleshooting update issues
 - **Rollback Support**: Use WordPress plugin rollback if needed
+
+### Update System Features
+
+- **Smart Caching**: API calls are cached for 12 hours to prevent rate limiting
+- **Version Detection**: Automatic version detection from plugin header
+- **Release Automation**: GitHub Actions automatically create releases with changelogs
+- **ZIP Generation**: Automatic plugin ZIP file creation for distribution
+- **Update Notifications**: Native WordPress update notifications in admin
+- **One-Click Updates**: Install updates directly from WordPress admin interface
 
 ### Update Process
 
-1. Plugin checks GitHub releases API
-2. Compares current version with latest release
-3. Shows update notification in WordPress admin
-4. Downloads and installs update when user confirms
+1. **Automatic Detection**: Plugin checks GitHub releases API every 12 hours
+2. **Version Comparison**: Compares current version with latest GitHub release
+3. **WordPress Notification**: Shows update notification in WordPress admin
+4. **One-Click Install**: Downloads and installs update when user confirms
+5. **GitHub Actions**: New releases are automatically created when code is pushed
+
+### For Developers
+
+The update system includes comprehensive debugging tools:
+
+- **Test Script**: Use `test-updater.php` to test GitHub API connectivity
+- **Debug Logging**: Enable `WP_DEBUG` for detailed update process logging
+- **Syntax Validation**: Use `test_syntax_updater.php` to validate updater code
+- **Implementation Guide**: See `BD-GitHub-Update-Implementation-Summary.md` for details
 
 ## API Reference
 
@@ -248,6 +269,16 @@ the Free Software Foundation; either version 2 of the License, or
 ```
 
 ## Changelog
+
+### 1.1.0
+- **Major Update**: Completely redesigned GitHub update system
+- **GitHub Actions**: Automatic release generation with workflow automation
+- **Smart Caching**: 12-hour API caching to prevent rate limiting
+- **Enhanced Debugging**: Comprehensive logging and test scripts
+- **Improved Updater**: New BD_CleanDash_Updater class with critical fixes
+- **Better Integration**: Native WordPress update notifications
+- **Developer Tools**: Added test-updater.php and syntax validation tools
+- **Documentation**: Complete implementation guide and troubleshooting
 
 ### 1.0.1
 - Added automatic GitHub updates

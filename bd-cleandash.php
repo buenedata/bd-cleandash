@@ -1,11 +1,12 @@
 <?php
 /**
  * Plugin Name: BD CleanDash
- * Plugin URI: https://buenedata.no/plugins/bd-cleandash
+ * Plugin URI: https://github.com/buenedata/bd-cleandash
  * Description: Clean up your WordPress dashboard by hiding unwanted notices and widgets. Maintain a distraction-free admin experience with powerful blacklist management.
- * Version: 1.0.5
+ * Version: 1.1.0
  * Author: Buene Data
  * Author URI: https://buenedata.no
+ * Update URI: https://github.com/buenedata/bd-cleandash
  * Text Domain: bd-cleandash
  * Domain Path: /languages
  * Requires at least: 5.0
@@ -14,11 +15,6 @@
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Network: false
- * GitHub Plugin URI: buenedata/bd-cleandash
- * GitHub Branch: main
- * GitHub Access Token: 
- * Requires WP: 5.0
- * Update URI: https://api.github.com/repos/buenedata/bd-cleandash/releases/latest
  *
  * @package BD_CleanDash
  */
@@ -29,7 +25,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('BD_CLEANDASH_VERSION', '1.0.5');
+define('BD_CLEANDASH_VERSION', '1.1.0');
 define('BD_CLEANDASH_PLUGIN_FILE', __FILE__);
 define('BD_CLEANDASH_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('BD_CLEANDASH_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -39,11 +35,14 @@ define('BD_CLEANDASH_FILE', __FILE__);
 // Require the main plugin class
 require_once BD_CLEANDASH_PLUGIN_DIR . 'includes/class-bd-cleandash.php';
 
-// Require GitHub updater
-require_once BD_CLEANDASH_PLUGIN_DIR . 'includes/class-bd-github-updater.php';
-
 // Require language management
 require_once BD_CLEANDASH_PLUGIN_DIR . 'includes/class-bd-language.php';
+
+// Initialize updater
+if (is_admin()) {
+    require_once BD_CLEANDASH_PLUGIN_DIR . 'includes/class-bd-updater.php';
+    new BD_CleanDash_Updater(BD_CLEANDASH_PLUGIN_FILE, 'buenedata', 'bd-cleandash');
+}
 
 /**
  * Initialize the plugin
@@ -52,20 +51,8 @@ function bd_cleandash_init() {
     BD_CleanDash::instance()->init();
 }
 
-/**
- * Initialize GitHub updater
- */
-function bd_cleandash_github_updater() {
-    $GLOBALS['bd_github_updater'] = new BD_GitHub_Updater(
-        BD_CLEANDASH_PLUGIN_FILE,
-        'buenedata',
-        'bd-cleandash'
-    );
-}
-
 // Hook into WordPress
 add_action('plugins_loaded', 'bd_cleandash_init');
-add_action('init', 'bd_cleandash_github_updater');
 
 /**
  * Plugin activation hook
